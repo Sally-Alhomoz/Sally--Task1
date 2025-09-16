@@ -29,9 +29,9 @@ namespace Sally__Task1
         {
             Title = title ;
             ID = id;
-            bookCount=1;
             AvailableCount = availableCount;
             ReservedCount = reservedCount;
+            bookCount = ReservedCount + AvailableCount;
         }
 
         

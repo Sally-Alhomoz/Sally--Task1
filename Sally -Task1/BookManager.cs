@@ -41,13 +41,14 @@ namespace Sally__Task1
                 foreach (string line in lines.Skip(1))
                 {
                     var parts = line.Split(',');
-                    Book b = new Book(parts[0], int.Parse(parts[1]), int.Parse(parts[2]), int.Parse(parts[3]));
+                    Book b = new Book(parts[0], int.Parse(parts[1]), int.Parse(parts[3]), int.Parse(parts[2]));
                     books.Add(b);
                 }
             }
         }
 
-        public void AddBook(Book b)
+        public void Add(Book b)
+
         {
             bool found = false;
             foreach(Book b2 in books)
@@ -55,23 +56,33 @@ namespace Sally__Task1
                 if (b.Title == b2.Title)
                 {
                     found = true;
-                    b2.bookCount++;
                     b2.AvailableCount++;
+                    b.ID = b2.ID;
                     break;
                 }
             }
             if(found != true)
             {
+                if (books.Count > 0)
+                {
+                    var maxId = books.Max(i => i.ID);
+                    b.ID = maxId+1;
+                }
+                else
+                {
+                    b.ID = 1;
+                }
                 books.Add(b);
             }
             SaveBooksToFile();
+
         }
 
-        public void ReserveBook(int num)
+        public void ReserveBook(string title)
         {
             foreach (Book b in books)
             {
-                if (b.ID == num)
+                if (b.Title == title)
                 {
                     if (b.AvailableCount >0)
                     {
@@ -100,18 +111,18 @@ namespace Sally__Task1
 
         }
 
-        public void ReleaseBook(int num)
+        public void ReleaseBook(string title)
         {
             //comment
             foreach (Book b in books)
             {
-                if (b.ID == num)
+                if (b.Title == title)
                 {
                     if (b.ReservedCount > 0)
                     {
                         b.ReservedCount--;
                         b.AvailableCount++;
-                        Console.WriteLine("Book Reserved Successfully !!\n");
+                        Console.WriteLine("Book Released Successfully !!\n");
                     }
                     else
                         Console.WriteLine("There is NO Book to Release\n");

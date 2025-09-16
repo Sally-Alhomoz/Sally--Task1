@@ -22,8 +22,9 @@ namespace Sally__Task1
                 Console.WriteLine("Menu");
                 Console.WriteLine("1- Add Book");
                 Console.WriteLine("2- Reserve Book");
-                Console.WriteLine("3- List All Books");
-                Console.WriteLine("4- Exit");
+                Console.WriteLine("3- Release Book");
+                Console.WriteLine("4- List All Books");
+                Console.WriteLine("5- Exit");
                 Console.WriteLine("Enter your Choice : ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine();
@@ -33,21 +34,28 @@ namespace Sally__Task1
                         {
                             Console.WriteLine("Enter a Book Title : ");
                             string t = Console.ReadLine();
-                            id++;
                             Book b = new Book(t,id,0,1);
-                            bookMng.AddBook(b);
+                            bookMng.Add(b);
                         }
                         break;
 
                     case 2:
                         {
-                            Console.WriteLine("Enter a Book Number to Reseve : ");
-                            int num = Convert.ToInt32(Console.ReadLine());
-                            bookMng.ReserveBook(num);
+                            Console.WriteLine("Enter a Book Title to Reseve : ");
+                            string title = Console.ReadLine();
+                            bookMng.ReserveBook(title);
                         }
                         break;
 
                     case 3:
+                        {
+                            Console.WriteLine("Enter a Book Title to Release : ");
+                            string title = Console.ReadLine();
+                            bookMng.ReleaseBook(title);
+                        }
+                        break;
+
+                    case 4:
                         {
                             
                             Console.WriteLine(bookMng.ToString());
@@ -55,7 +63,7 @@ namespace Sally__Task1
                         }
                         break;
 
-                    case 4:
+                    case 5:
                         Environment.Exit(0);
                         break;
                 }
