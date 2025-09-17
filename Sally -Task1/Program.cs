@@ -33,7 +33,7 @@ namespace Sally__Task1
                         {
                             Console.WriteLine("Enter a Book Title : ");
                             string t = Console.ReadLine();
-                            Book b = new Book(t,id,0,1);
+                            Book b = new Book(t,id,1,0);
                             bookMng.Add(b);
                         }
                         break;
