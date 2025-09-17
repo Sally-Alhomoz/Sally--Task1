@@ -74,7 +74,7 @@ namespace Sally__Task1
         public override string ToString()
         {
             if (books.Count == 0)
-                return "No books available.";
+                return "No books available.":
 
             StringBuilder sb = new StringBuilder();
             foreach (Book b in books)
