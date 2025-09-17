@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sally__Task1
 {
-    internal class Book
+    public class Book
     {
         public string Title { get; set; }
         public int ID { get; set; }
@@ -25,7 +25,7 @@ namespace Sally__Task1
             ReservedCount = 0;
         }
 
-        public Book(string title,int id,int reservedCount , int availableCount)
+        public Book(string title,int id , int availableCount, int reservedCount)
         {
             Title = title ;
             ID = id;

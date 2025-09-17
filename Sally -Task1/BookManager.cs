@@ -10,43 +10,17 @@ namespace Sally__Task1
 {
     public interface IBookManager
     {
-         void SaveBooksToFile();
 
-         void LoadBooksFromFile();
     }
     internal class BookManager : IBookManager
     {
-        static List<Book> books = new List<Book>();
-        static string filePath = "BooksData.csv";
+        BookRepository repo = new BookRepository();
+        List<Book> books = new List<Book>();
 
-        public void SaveBooksToFile()
+        public BookManager()
         {
-
-            List<string> lines = new List<string>();
-            lines.Add($"Title,ID,Available,Reserved");
-
-            foreach (Book b in books)
-            {
-                lines.Add($"{b.Title},{b.ID},{b.AvailableCount},{b.ReservedCount}");
-            }
-            File.WriteAllLines(filePath, lines);
+            books = repo.LoadBooksFromFile();
         }
-
-        public void LoadBooksFromFile()
-        {
-            if (File.Exists(filePath))
-            {
-                string[] lines = File.ReadAllLines(filePath);
-                
-                foreach (string line in lines.Skip(1))
-                {
-                    var parts = line.Split(',');
-                    Book b = new Book(parts[0], int.Parse(parts[1]), int.Parse(parts[3]), int.Parse(parts[2]));
-                    books.Add(b);
-                }
-            }
-        }
-
         public void Add(Book b)
 
         {
@@ -74,7 +48,7 @@ namespace Sally__Task1
                 }
                 books.Add(b);
             }
-            SaveBooksToFile();
+            repo.SaveBooksToFile();
 
         }
 
@@ -94,7 +68,7 @@ namespace Sally__Task1
                         Console.WriteLine("Book Can Not be Resered\n");
                 }
             }
-            SaveBooksToFile();
+            repo.SaveBooksToFile();
         }
 
         public override string ToString()
@@ -128,7 +102,7 @@ namespace Sally__Task1
                         Console.WriteLine("There is NO Book to Release\n");
                 }
             }
-            SaveBooksToFile();
+            repo.SaveBooksToFile();
         }
 
     }

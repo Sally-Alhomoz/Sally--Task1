@@ -14,7 +14,6 @@ namespace Sally__Task1
         {
             
             BookManager bookMng = new BookManager();
-            bookMng.LoadBooksFromFile();
             int id = 1;
 
             while (true)
