@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sally__Task1
 {
     public class Book
-    {
+    { 
         public string Title { get; set; }
         public int ID { get; set; }
         public int bookCount { get; set; } = 0;
